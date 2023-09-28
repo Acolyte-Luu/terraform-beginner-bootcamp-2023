@@ -1,4 +1,12 @@
 terraform {
+  
+    cloud {
+    organization = "Luu"
+
+    workspaces {
+      name = "terra-house-acolyteluu"
+    }
+  }
   required_providers {
     
     random = {
