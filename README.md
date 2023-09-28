@@ -173,3 +173,4 @@ If you lose this file, you lose knowning the state of your infrastructure.
 
 `.terraform` directory contains binaries of terraform providers.
 
+Terraform cloud login was automated with the following bash script bin/generate_tfrc_credentials even though the initial issue with Gitpod was resolved.
