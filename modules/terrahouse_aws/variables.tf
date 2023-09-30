@@ -35,3 +35,12 @@ variable "error_html_filepath" {
     error_message = "The provided path for error.html does not exist"
 }
 }
+
+variable "content_version" {
+  description = "Content version of our static website"
+  type = number
+  validation {
+    condition = var.content_version > 0 && (var.content_version) == var.content_version
+    error_message = "The content version must be 1 or greater than 1"
+  }
+}
