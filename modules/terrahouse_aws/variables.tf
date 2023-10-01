@@ -44,3 +44,8 @@ variable "content_version" {
     error_message = "The content version must be 1 or greater than 1"
   }
 }
+
+variable "assets_path" {
+  description = "Path to the assets folder"
+  type = string
+}
