@@ -10,8 +10,13 @@ output "s3_website_endpoint" {
 
 locals {
   root_path = path.root
+  module_path = path.module
 }
 
 output "root_path" {
+  value = local.root_path
+}
+
+output "module_path" {
   value = local.root_path
 }
