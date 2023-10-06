@@ -26,6 +26,7 @@ func Provider() *schema.Provider{
 		},
 		Schema: map[string]*schema.Schema{
 			"endpoint":{
+
 				Type: schema.TypeString,
 				Required: true,
 				Description: "The endpoint for the external service",
