@@ -4,6 +4,7 @@ package main
 
 // imports the fmt package which contains functions for formatted I/O.
 import (
+
 	"bytes"
 	"context"
 	"encoding/json"
@@ -12,7 +13,9 @@ import (
 	"net/http"
 	"github.com/google/uuid"
 	"github.com/hashicorp/terraform-plugin-sdk/v2/diag"
+
 	"github.com/hashicorp/terraform-plugin-sdk/v2/helper/schema"
+	"github.com/hashicorp/terraform-plugin-sdk/v2/diag"
 	"github.com/hashicorp/terraform-plugin-sdk/v2/plugin"
 )
 
@@ -85,9 +88,11 @@ func providerConfigure(p *schema.Provider) schema.ConfigureContextFunc{
 			Token: d.Get("token").(string),
 			UserUuid: d.Get("user_uuid").(string),
 		}
+
 		log.Println("endpoint: "+ config.Endpoint)
 		log.Println("token: "+ config.Token)
 		log.Println("uuid: "+ config.UserUuid)
+
 		log.Println("providerConfigure:end")
 		return &config, nil
 	}
@@ -100,6 +105,7 @@ func Resource() *schema.Resource{
 		ReadContext: resourceHouseRead,
 		UpdateContext: resourceHouseUpdate,
 		DeleteContext: resourceHouseDelete,
+
 		Schema: map[string]*schema.Schema{
 			"name":{
 				Type: schema.TypeString,
@@ -129,10 +135,12 @@ func Resource() *schema.Resource{
 		},
 	}
 	log.Println("Resource:end")
+
 	return resource
 }
 
 func resourceHouseCreate(ctx context.Context, d *schema.ResourceData, m interface{}) diag.Diagnostics {
+
 	log.Println("resourceHouseCreate:start")
 	var diags diag.Diagnostics
 
@@ -188,6 +196,7 @@ func resourceHouseCreate(ctx context.Context, d *schema.ResourceData, m interfac
 	d.SetId(homeUUID)
 
 	log.Println("resourceHouseCreate:end")
+
 	return diags
 }
 
@@ -239,6 +248,7 @@ func resourceHouseRead(ctx context.Context, d *schema.ResourceData, m interface{
 
 
 	log.Println("resourceHouseRead:end")
+
 	return diags
 }
 
@@ -290,6 +300,7 @@ func resourceHouseUpdate(ctx context.Context, d *schema.ResourceData, m interfac
 	d.Set("name",payload["name"])
 	d.Set("description",payload["description"])
 	d.Set("content_version",payload["content_version"])
+
 	return diags
 }
 
@@ -330,5 +341,6 @@ func resourceHouseDelete(ctx context.Context, d *schema.ResourceData, m interfac
 	d.SetId("")
 
 	log.Println("resourceHouseDelete:end")
+
 	return diags
 }
