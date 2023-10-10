@@ -1,14 +1,14 @@
 output "bucket_name" {
     description = "Static website bucket name"
-    value = module.terrahouse_aws.bucket_name
+    value = module.home_bloodborne_hosting.bucket_name
 }
 
 output "s3_website_endpoint" {
   description = "s3 static website hosting endpoint"
-  value = module.terrahouse_aws.website_endpoint
+  value = module.home_bloodborne_hosting.website_endpoint
 }
 
-output "cloudfront_url" {
+output "domain_name" {
   description = "Cloudfront distribution domain name"
-  value = module.terrahouse_aws.cloudfront_url
+  value = module.home_bloodborne_hosting.domain_name
 }
