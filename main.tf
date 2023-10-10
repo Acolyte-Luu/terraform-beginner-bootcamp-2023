@@ -5,13 +5,13 @@ terraform {
       version = "1.0.0"
     }
   }
-#  cloud {
-#  organization = "Luu"
-#
-#   workspaces {
-#    name = "terra-house-acolyteluu"
-# }
-#}
+  cloud {
+  organization = "Luu"
+
+   workspaces {
+    name = "terra-house-acolyteluu"
+ }
+}
 }
 
 provider "terratowns" {
@@ -20,24 +20,40 @@ provider "terratowns" {
   token = var.terratowns_access_token
 }
 
-module "terrahouse_aws" {
-  source = "./modules/terrahouse_aws"
+module "home_bloodborne_hosting" {
+  source = "./modules/terrahome_aws"
   user_uuid = var.teacherseat_user_uuid
-#bucket_name = var.bucket_name
-  index_html_filepath = var.index_html_filepath
-  error_html_filepath = var.error_html_filepath
-  content_version = var.content_version
-  assets_path = var.assets_path
+  public_path = var.bloodborne.public_path
+  content_version = var.bloodborne.content_version
 }
 
-resource "terratowns_home" "home" {
+resource "terratowns_home" "home_bloodborne" {
   name = "How to end the long night"
   description = <<DESCRIPTION
 Bloodborne is the best FromSoft game. We need a remastered one.
 I am going to show you how to end the long night.
 DESCRIPTION
-  domain_name = module.terrahouse_aws.cloudfront_url
+  domain_name = module.home_bloodborne_hosting.domain_name
   #domain_name = "3dfgffg.cloudfront.net"
   town = "missingo"
-  content_version = 1
+  content_version = var.bloodborne.content_version
+}
+
+module "home_elden_ring_hosting" {
+  source = "./modules/terrahome_aws"
+  user_uuid = var.teacherseat_user_uuid
+  public_path = var.elden_ring.public_path
+  content_version = var.elden_ring.content_version
+}
+
+resource "terratowns_home" "home_elden_ring" {
+  name = "How to become the Elden Lord"
+  description = <<DESCRIPTION
+Tarnished! Are you ready to face the demi-gods and becom the rightful Elden Lord?
+Pick up your sword and find grace in the Lands Between.
+DESCRIPTION
+  domain_name = module.home_elden_ring_hosting.domain_name
+  #domain_name = "3elde4ing.cloudfront.net"
+  town = "missingo"
+  content_version = var.elden_ring.content_version
 }
