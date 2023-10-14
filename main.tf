@@ -35,7 +35,7 @@ I am going to show you how to end the long night.
 DESCRIPTION
   domain_name = module.home_bloodborne_hosting.domain_name
   #domain_name = "3dfgffg.cloudfront.net"
-  town = "missingo"
+  town = "gamers-grotto"
   content_version = var.bloodborne.content_version
 }
 
@@ -54,6 +54,6 @@ Pick up your sword and find grace in the Lands Between.
 DESCRIPTION
   domain_name = module.home_elden_ring_hosting.domain_name
   #domain_name = "3elde4ing.cloudfront.net"
-  town = "missingo"
+  town = "gamers-grotto"
   content_version = var.elden_ring.content_version
 }
